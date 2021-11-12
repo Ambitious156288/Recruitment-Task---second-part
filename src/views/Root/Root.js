@@ -1,13 +1,14 @@
 import React from 'react';
-import GlobalStyle from 'theme/GlobalStyle';
 
-import First from 'components/First';
+import SearchingBar from 'components/SearchingBar';
+import Display from 'components/Display';
 
 const Root = () => (
   <>
-    <GlobalStyle />
-
-    <First />
+    <>
+      <SearchingBar />
+      <Display />
+    </>
   </>
 );
 
