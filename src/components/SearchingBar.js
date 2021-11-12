@@ -1,40 +1,23 @@
-// import React from 'react';
-import * as React from 'react';
+import React, { useState } from 'react';
 import MenuItem from '@mui/material/MenuItem';
-import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 const SearchingBar = () => {
-  const [age, setAge] = React.useState('');
+  const [location, setLocation] = useState('');
 
-  const handleChange = event => {
-    setAge(event.target.value);
-  };
+  const handleChange = e => setLocation(e.target.value);
 
   return (
-    <>
-      <p>SearchingBar</p>
-
-      <div>
-        <FormControl sx={{ m: 1, minWidth: 120 }}>
-          <Select
-            value={age}
-            onChange={handleChange}
-            displayEmpty
-            inputProps={{ 'aria-label': 'Without label' }}
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
-          </Select>
-          <FormHelperText>Without label</FormHelperText>
-        </FormControl>
-      </div>
-    </>
+    <FormControl sx={{ m: 1, minWidth: 250 }}>
+      <Select value={location} onChange={handleChange} displayEmpty>
+        <MenuItem value="">
+          <em>Select City</em>
+        </MenuItem>
+        <MenuItem value={1}>London</MenuItem>
+        <MenuItem value={2}>München</MenuItem>
+      </Select>
+    </FormControl>
   );
 };
 
