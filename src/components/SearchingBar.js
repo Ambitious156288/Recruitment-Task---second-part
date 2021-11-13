@@ -1,21 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-const SearchingBar = () => {
-  const [location, setLocation] = useState('');
-
-  const handleChange = e => setLocation(e.target.value);
+const SearchingBar = ({ location, setLocation }) => {
+  const updateCity = e => setLocation(e.target.value);
 
   return (
-    <FormControl sx={{ m: 1, minWidth: 250 }}>
-      <Select value={location} onChange={handleChange} displayEmpty>
+    <FormControl sx={{ m: 3, minWidth: 250 }}>
+      <Select value={location} onChange={updateCity} displayEmpty>
         <MenuItem value="">
           <em>Select City</em>
         </MenuItem>
-        <MenuItem value={1}>London</MenuItem>
-        <MenuItem value={2}>München</MenuItem>
+        <MenuItem value="London">London</MenuItem>
+        <MenuItem value="München">München</MenuItem>
       </Select>
     </FormControl>
   );

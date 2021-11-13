@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -6,7 +6,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -16,16 +15,9 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   },
 }));
 
-const createData = (city, date, humidity, temp) => {
-  return { city, date, humidity, temp };
-};
+const Display = ({ weatherInfo, city, delay }) => {
+  useEffect(delay, [weatherInfo]);
 
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-];
-
-const Display = () => {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }}>
@@ -38,14 +30,15 @@ const Display = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => (
-            <TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-              <TableCell>{row.city}</TableCell>
-              <TableCell align="right">{row.date}</TableCell>
-              <TableCell align="right">{row.humidity}</TableCell>
-              <TableCell align="right">{row.temp}</TableCell>
-            </TableRow>
-          ))}
+          {city &&
+            weatherInfo.map(item => (
+              <TableRow key={item.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                <TableCell>{city}</TableCell>
+                <TableCell align="right">{item.dt_txt}</TableCell>
+                <TableCell align="right">{item.main.humidity}</TableCell>
+                <TableCell align="right">{item.main.temp}</TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
     </TableContainer>
